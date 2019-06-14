@@ -73,13 +73,13 @@ export default class FriendForm extends React.Component {
           .catch(err => console.error(err))
       }
 
-      setUpdateForm =(e, friend) => {
-        e.preventDefault()
-        this.setState({
-          newFriend: friend
-        })
-        this.props.history.push('/new-friend')
-      }
+    //   setUpdateForm =(e, friend) => {
+    //     e.preventDefault()
+    //     this.setState({
+    //       newFriend: friend
+    //     })
+    //     this.props.history.push('/new-friend')
+    //   }
 
     render() {
         return (
