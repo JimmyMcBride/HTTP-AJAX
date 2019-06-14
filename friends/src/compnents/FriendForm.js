@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 export default class FriendForm extends React.Component {
     state = {
@@ -33,9 +34,9 @@ export default class FriendForm extends React.Component {
 
     handleSubmit = e => {
         if (this.props.newFriend) {
-            this.props.updateFriend(e, this.state.friend)
+            this.updateFriend(e, this.state.friend)
         } else {
-            this.props.addFriend(e, this.state.friend)
+            this.addFriend(e, this.state.friend)
         }
         this.setState({
             name: '',
@@ -43,6 +44,42 @@ export default class FriendForm extends React.Component {
             email: ''
         })
     }
+
+    addFriend = (e, friend) => {
+        e.preventDefault()
+        axios
+          .post('http://localhost:5000/friends', friend)
+          .then(res => {
+            this.setState({
+              friends: res.data
+            })
+            this.props.history.push('/friends')
+            console.log('history', this.props.history)
+          })
+          .catch(err => console.error(err))
+      }
+
+      updateFriend = (e, friend) => {
+        e.preventDefault()
+        axios
+          .put(`http://localhost:5000/friends/${friend.id}`, friend)
+          .then(res => {
+            this.setState({
+              newFriend: null,
+              friends: res.data
+            })
+            this.props.history.push('/friends')
+          })
+          .catch(err => console.error(err))
+      }
+
+      setUpdateForm =(e, friend) => {
+        e.preventDefault()
+        this.setState({
+          newFriend: friend
+        })
+        this.props.history.push('/new-friend')
+      }
 
     render() {
         return (

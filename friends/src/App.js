@@ -31,40 +31,41 @@ componentDidMount() {
         })
   }
 
-  addFriend = (e, friend) => {
-    e.preventDefault()
-    axios
-      .post('http://localhost:5000/friends', friend)
-      .then(res => {
-        this.setState({
-          friends: res.data
-        })
-        this.props.history.push('/friends')
-      })
-      .catch(err => console.error(err))
-  }
+  // addFriend = (e, friend) => {
+  //   e.preventDefault()
+  //   axios
+  //     .post('http://localhost:5000/friends', friend)
+  //     .then(res => {
+  //       this.setState({
+  //         friends: res.data
+  //       })
+  //       this.props.history.push('/friends')
+  //       console.log('history', this.props.history)
+  //     })
+  //     .catch(err => console.error(err))
+  // }
 
-  updateFriend = (e, friend) => {
-    e.preventDefault()
-    axios
-      .put(`http://localhost:5000/friends/${friend.id}`, friend)
-      .then(res => {
-        this.setState({
-          newFriend: null,
-          friends: res.data
-        })
-        this.props.history.push('/friends')
-      })
-      .catch(err => console.error(err))
-  }
+  // updateFriend = (e, friend) => {
+  //   e.preventDefault()
+  //   axios
+  //     .put(`http://localhost:5000/friends/${friend.id}`, friend)
+  //     .then(res => {
+  //       this.setState({
+  //         newFriend: null,
+  //         friends: res.data
+  //       })
+  //       this.props.history.push('/friends')
+  //     })
+  //     .catch(err => console.error(err))
+  // }
 
-  setUpdateForm =(e, friend) => {
-    e.preventDefault()
-    this.setState({
-      newFriend: friend
-    })
-    this.props.history.push('/new-friend')
-  }
+  // setUpdateForm =(e, friend) => {
+  //   e.preventDefault()
+  //   this.setState({
+  //     newFriend: friend
+  //   })
+  //   this.props.history.push('/new-friend')
+  // }
 
   render() {
     return (
@@ -103,9 +104,9 @@ componentDidMount() {
             render={props => (
               <FriendForm
                 {...props}
-                addFriend={this.addFriend}
-                updateFriend={this.updateFriend}
-                newFriend={this.state.newFriend}
+                // addFriend={this.addFriend}
+                // updateFriend={this.updateFriend}
+                // newFriend={this.state.newFriend}
               />
             )}
           />
